@@ -1,0 +1,72 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void NLexiOrder(int stringInt[], int len) {
+	int matchIndex = 0;
+	for (int i = len - 2; i >= 0; i--) {
+		if (stringInt[i] < stringInt[i + 1]) {
+			int tmpIndex = i + 1;
+			while (tmpIndex < len) {
+				if (stringInt[i] < stringInt[tmpIndex]) {
+					tmpIndex++;
+					continue;
+				}
+				break;
+			}
+			tmpIndex--;
+			int tmp = stringInt[tmpIndex];
+			stringInt[tmpIndex] = stringInt[i];
+			stringInt[i] = tmp;
+			matchIndex = i;
+		}
+	}
+	sort(stringInt + matchIndex + 1, stringInt + len);
+	for (int i = 0; i < len; i++) {
+		char ch = stringInt[i];
+		cout << ch;
+	}
+	cout << endl << flush;
+}
+
+int main() {
+	while (true) {
+		string s;
+		cin >> s;
+		if (s == "#") {
+			cin >> s;
+			if (s == "0") {
+				break;
+			}
+		}
+		int k;
+		cin >> k;
+
+		int len = s.length();
+		int stringInt[len];
+		for (int j = 0; j < len; j++) {
+			char ch = s.at(j);
+			stringInt[j] = (int) ch;
+		}
+		/*for (int i = 0; i < len; i++) {
+			char ch = stringInt[i];
+			cout << ch;
+		}
+		cout << endl << flush;
+
+		sort(stringInt, stringInt + len);
+		for (int i = 0; i < len; i++) {
+			char ch = stringInt[i];
+			cout << ch;
+		}
+		cout << endl << flush;
+*/		while (k--){
+			NLexiOrder(stringInt, len);
+			/*for (int i = 0; i < len; i++) {
+				char ch = stringInt[i];
+				cout << ch;
+			}
+			cout << endl << flush;*/
+		}
+	}
+	return 0;
+}

@@ -1,0 +1,1 @@
+LockedTreasure.d: ../LockedTreasure.cpp

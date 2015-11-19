@@ -1,0 +1,129 @@
+/**
+ * Given a unweighed connected graph (in the form of Adjacency Matrix), this program finds \
+ *  the shortest path of very vertex from the RooT Node \
+ *  Distance between every adjacent node is 1 unit
+ */
+
+#include <iostream>
+using namespace std;
+
+struct Queue {
+	int front, rear, size;
+	int capacity;
+	int* array;
+};
+
+struct Queue* createQueue(int capacity) {
+	struct Queue* queue = new Queue();
+	queue->capacity = capacity;
+	queue->front = queue->size = 0;
+	queue->rear = capacity - 1;
+	queue->array = new int[capacity];
+	return queue;
+}
+
+int isFull(struct Queue* queue) {
+	return (queue->size == queue->capacity);
+}
+
+int isEmpty(struct Queue* queue) {
+	return (queue->size == 0);
+}
+
+void enqueue(struct Queue* queue, int item) {
+	if (isFull(queue))
+		return;
+	queue->rear = (queue->rear + 1) % queue->capacity;
+	queue->array[queue->rear] = item;
+	queue->size = queue->size + 1;
+}
+
+int dequeue(struct Queue* queue) {
+	if (isEmpty(queue))
+		return -1;
+	int item = queue->array[queue->front];
+	queue->front = (queue->front + 1) % queue->capacity;
+	queue->size = queue->size - 1;
+	return item;
+}
+
+int front(struct Queue* queue) {
+	if (isEmpty(queue))
+		return -1;
+	return queue->array[queue->front];
+}
+
+int rear(struct Queue* queue) {
+	if (isEmpty(queue))
+		return -1;
+	return queue->array[queue->rear];
+}
+
+void printPath(int parent[], int curNode){
+	if(curNode == 0){
+		cout << "V0 -> ";
+		return;
+	}
+	printPath(parent, parent[curNode]);
+	cout << "V" << curNode << " ->";
+	return;
+}
+int main() {
+	int noOfVertex = 9;
+	//cin >> noOfVertex;
+	/*int adjacencyMatrix[noOfVertex][noOfVertex];
+	 for (int i = 0; i < noOfVertex; i++){
+	 for (int j = 0; j < noOfVertex; j++){
+	 cin >> adjacencyMatrix[i][j];
+	 }
+	 }*/
+
+	/*int adjacencyMatrix[7][7] = {
+									{ 0, 1, 1, 0, 0, 0, 0 },
+									{ 0, 0, 0, 1, 1, 0, 0 },
+									{ 0, 0, 0, 0, 0, 0, 0 },
+									{ 0, 0, 0, 0, 0, 1, 1 },
+									{ 0, 0, 0, 1, 0, 0, 1 },
+									{ 0, 0, 1, 0, 0, 0, 0 },
+									{ 0, 0, 0, 0, 0, 1, 0 }
+								};*/
+	int adjacencyMatrix[9][9] = {
+									{ 0, 1 ,1, 0, 0, 0, 0, 0, 0 },
+									{ 0, 0 ,0, 1, 0, 0, 0, 0, 0 },
+									{ 0, 0 ,0, 0, 0, 0, 0, 0, 1 },
+									{ 0, 0 ,0, 0, 1, 0, 1, 0, 0 },
+									{ 0, 0 ,1, 0, 0, 0, 1, 0, 0 },
+									{ 0, 0 ,0, 0, 0, 0, 1, 0, 0 },
+									{ 0, 0 ,0, 0, 0, 0, 0, 1, 1 },
+									{ 0, 0 ,0, 0, 0, 1, 0, 0, 1 },
+									{ 0, 0 ,0, 0, 0, 0, 0, 0, 0 }
+								};
+	bool visited[noOfVertex];
+	int distance[noOfVertex];
+	int parent[noOfVertex];
+	Queue *que = createQueue(noOfVertex);
+	enqueue(que, 0);
+	visited[0] = true;
+	distance[0] = 0;
+	parent[0] = -1;
+	while (!isEmpty(que)) {
+		int vertex = dequeue(que);
+		for (int i = 0; i < noOfVertex; i++) {
+			if (adjacencyMatrix[vertex][i] == 1 && !visited[i]) {
+				enqueue(que, i);
+				visited[i] = true;
+				distance[i] = distance[vertex] + 1;
+				parent[i] = vertex;
+			}
+		}
+	}
+
+	for (int i = 0; i < noOfVertex; i++) {
+		cout << endl;
+		//cout << "Distance of Node " << i << " from Root (i.e. Node 0) is : " << distance[i] << endl;
+		cout << "Distance of Node " << i << " is : " << distance[i] << endl;
+		cout << "Path from Root Node : ";
+		printPath(parent, i);
+		cout << endl;
+	}
+}

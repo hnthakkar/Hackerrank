@@ -1,0 +1,63 @@
+# include <iostream>
+using namespace std;
+
+long long int min(long long int a, long long int b, long long int c) {
+	if (a <= b) {
+		if (a <= c)
+			return a;
+		else
+			return c;
+	}
+	if (b <= c)
+		return b;
+	else
+		return c;
+}
+
+int main() {
+	int T;
+	cin >> T;
+	while(T--){
+		int N;
+		cin >> N;
+		int p,q,r;
+		cin >> p >> q >> r;
+		int kCases[N];
+		int max = 0;
+		for (int i = 0; i < N; i++){
+			cin >> kCases[i];
+			if(max < kCases[i]){
+				max = kCases[i];
+			}
+		}
+
+		long long int num[max];
+		int pIndex = 0, qIndex = 0, rIndex = 0;
+		long long int pNext = p;
+		long long int qNext = q;
+		long long int rNext = r;
+		long long int nextNum = 1;
+		num[0] = 1;
+		for (int i = 1; i < max; i++) {
+			nextNum = min(pNext, qNext, rNext);
+			num[i] = nextNum;
+			if (nextNum == pNext) {
+				pIndex++;
+				pNext = num[pIndex] * p;
+			}
+			if (nextNum == qNext) {
+				qIndex++;
+				qNext = num[qIndex] * q;
+			}
+			if (nextNum == rNext) {
+				rIndex++;
+				rNext = num[rIndex] * r;
+			}
+		}
+
+		for (int j = 0; j < max; j++){
+			cout << num[j] << ",";
+		}
+	}
+	return 0;
+}

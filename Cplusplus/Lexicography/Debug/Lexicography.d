@@ -1,0 +1,1 @@
+Lexicography.d: ../Lexicography.cpp

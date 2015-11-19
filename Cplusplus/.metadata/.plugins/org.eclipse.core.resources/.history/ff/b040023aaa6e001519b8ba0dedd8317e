@@ -1,0 +1,59 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	while (true) {
+		int N;
+		cin >> N;
+		if (N == 0)
+			break;
+		int input[N];
+		for (int i = 0; i < N; i++) {
+			cin >> input[i];
+		}
+		int count = 0;
+		for (int i = 0; i < N; i++) {
+			int num = input[i];
+			for (int j = i + 1; j < N - 1; j++) {
+				int small, second, third, tmp;
+				if (input[j] < input[j + 1]) {
+					if (input[j] < num) {
+						small = input[j];
+						tmp = num;
+					} else {
+						small = num;
+						tmp = input[j];
+					}
+					if (tmp < input[j + 1]) {
+						second = tmp;
+						third = input[j + 1];
+					} else {
+						second = input[j + 1];
+						third = tmp;
+					}
+				} else {
+					if (input[j + 1] < num) {
+						small = input[j + 1];
+						tmp = num;
+					} else {
+						small = num;
+						tmp = input[j + 1];
+					}
+					if (tmp < input[j]) {
+						second = tmp;
+						third = input[j];
+					} else {
+						second = input[j];
+						third = tmp;
+					}
+				}
+
+				if (small + second < third) {
+					count++;
+				}
+			}
+		}
+		cout << count << endl;
+	}
+	return 0;
+}

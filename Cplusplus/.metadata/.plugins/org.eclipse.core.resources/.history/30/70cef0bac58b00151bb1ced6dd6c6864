@@ -1,0 +1,64 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void BFS(int N, int src, int ** adj, bool * visited, int * dist) {
+	queue<int> q;
+	q.push(src);
+	dist[src] = 0;
+	visited[src] = true;
+	int incDist = 6;
+	while (!q.empty()) {
+		int front = q.front();
+		for (int i = 0; i < N; i++) {
+			if (adj[front][i] == 1 && !visited[i]) {
+				q.push(i);
+				dist[i] = incDist;
+			}
+		}
+		incDist += 6;
+		q.pop();
+	}
+}
+
+int main() {
+	int T;
+	cin >> T;
+	while (T--) {
+		int N, M;
+		cin >> N >> M;
+		int ** adj;
+		adj = new int*[N];
+		for (int i = 0; i < N; i++) {
+			adj[i] = new int[N];
+			for (int j = 0; j < N; j++) {
+				adj[i][j] = 0;
+			}
+		}
+
+		bool visited[N];
+		for (int i = 0; i < N; i++){
+			visited[i] = false;
+		}
+		int start, end;
+		while (M--) {
+			cin >> start >> end;
+			adj[start][end] = 1;
+		}
+
+		int src;
+		cin >> src;
+
+		int * dist = new int[N];
+		for (int i = 0; i < N; i++){
+			dist[N] = -1;
+		}
+
+		BFS(N, src, adj, visited, dist);
+
+		for (int i = 0; i < N; i++){
+			cout << dist[i] << " ";
+		}
+		cout << endl;
+	}
+	return 0;
+}

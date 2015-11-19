@@ -1,0 +1,6 @@
+23:17:31 **** Incremental Build of configuration Debug for project LockedTreasure ****
+make all 
+make: Nothing to be done for `all'.
+
+23:17:32 Build Finished (took 56ms)
+

@@ -1,0 +1,83 @@
+#include <stdio.h>
+#include <stddef.h>
+
+struct node {
+	int value;
+	struct node *left;
+	struct node *right;
+};
+
+static int preIndex = 0;
+static int isCorrect = 1;
+struct node * buildTree(int pre[], int in[], int inStrt, int inEnd) {
+	if (inStrt > inEnd || !isCorrect)
+		return NULL;
+
+	struct node *ret = ((node *)malloc(sizeof(node));
+	ret->value = pre[preIndex++];
+	ret->left = NULL;
+	ret->right = NULL;
+
+	if (inStrt == inEnd)
+		return ret;
+	int i = inStrt;
+	for (; i <= inEnd; i++) {
+		if (in[i] == pre[preIndex - 1]) {
+			break;
+		}
+	}
+
+	ret->left = buildTree(pre, in, inStrt, i - 1);
+	if (ret->left && ret->left->value > ret->value) {
+		isCorrect = 0;
+		return NULL;
+	}
+
+	if (isCorrect) {
+		ret->right = buildTree(pre, in, i + 1, inEnd);
+		if(ret->right && ret->right->value < ret->value){
+			isCorrect = 0;
+			return NULL;
+		}
+	} else {
+		return NULL;
+	}
+	return ret;
+}
+
+void printPostorder(struct node* node) {
+	if (node == NULL)
+		return;
+
+	printPostorder(node->left);
+	printPostorder(node->right);
+	cout << node->value << endl;
+}
+
+int main() {
+	int T;
+	cin >> T;
+	for (int t = 1; t <= T; t++) {
+		int N;
+		cin >> N;
+		int in[N];
+		for (int i = 0; i < N; i++) {
+			in[i] = i + 1;
+		}
+		int pre[N];
+		for (int i = 0; i < N; i++) {
+			cin >> pre[i];
+		}
+		preIndex = 0;
+		isCorrect = 1;
+		struct node * root = buildTree(pre, in, 0, N - 1);
+		if (isCorrect == 1) {
+			cout << "Case " << t << ":" << endl;
+			cout << -1 << endl;
+		} else {
+			cout << "Case " << t << ":" << endl;
+			printPostorder(root);
+		}
+	}
+	return 0;
+}

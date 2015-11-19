@@ -1,0 +1,106 @@
+23:17:33 **** Incremental Build of configuration Debug for project MazeMaker ****
+make all 
+Building file: ../MazeMaker.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"MazeMaker.d" -MT"MazeMaker.d" -o "MazeMaker.o" "../MazeMaker.cpp"
+../MazeMaker.cpp: In function ‘int main()’:
+../MazeMaker.cpp:6:19: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  ref[0] = {0,0,0,0};
+                   ^
+../MazeMaker.cpp:6:9: error: assigning to an array from an initializer list
+  ref[0] = {0,0,0,0};
+         ^
+../MazeMaker.cpp:7:19: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  ref[1] = {0,0,0,1};
+                   ^
+../MazeMaker.cpp:7:9: error: assigning to an array from an initializer list
+  ref[1] = {0,0,0,1};
+         ^
+../MazeMaker.cpp:8:19: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  ref[2] = {0,0,1,0};
+                   ^
+../MazeMaker.cpp:8:9: error: assigning to an array from an initializer list
+  ref[2] = {0,0,1,0};
+         ^
+../MazeMaker.cpp:9:19: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  ref[3] = {0,0,1,1};
+                   ^
+../MazeMaker.cpp:9:9: error: assigning to an array from an initializer list
+  ref[3] = {0,0,1,1};
+         ^
+../MazeMaker.cpp:10:19: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  ref[4] = {0,1,0,0};
+                   ^
+../MazeMaker.cpp:10:9: error: assigning to an array from an initializer list
+  ref[4] = {0,1,0,0};
+         ^
+../MazeMaker.cpp:11:19: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  ref[5] = {0,1,0,1};
+                   ^
+../MazeMaker.cpp:11:9: error: assigning to an array from an initializer list
+  ref[5] = {0,1,0,1};
+         ^
+../MazeMaker.cpp:12:19: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  ref[6] = {0,1,1,0};
+                   ^
+../MazeMaker.cpp:12:9: error: assigning to an array from an initializer list
+  ref[6] = {0,1,1,0};
+         ^
+../MazeMaker.cpp:13:19: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  ref[7] = {0,1,1,1};
+                   ^
+../MazeMaker.cpp:13:9: error: assigning to an array from an initializer list
+  ref[7] = {0,1,1,1};
+         ^
+../MazeMaker.cpp:14:19: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  ref[8] = {1,0,0,0};
+                   ^
+../MazeMaker.cpp:14:9: error: assigning to an array from an initializer list
+  ref[8] = {1,0,0,0};
+         ^
+../MazeMaker.cpp:15:19: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  ref[9] = {1,0,0,1};
+                   ^
+../MazeMaker.cpp:15:9: error: assigning to an array from an initializer list
+  ref[9] = {1,0,0,1};
+         ^
+../MazeMaker.cpp:16:20: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  ref[10] = {1,0,1,0};
+                    ^
+../MazeMaker.cpp:16:10: error: assigning to an array from an initializer list
+  ref[10] = {1,0,1,0};
+          ^
+../MazeMaker.cpp:17:20: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  ref[11] = {1,0,1,1};
+                    ^
+../MazeMaker.cpp:17:10: error: assigning to an array from an initializer list
+  ref[11] = {1,0,1,1};
+          ^
+../MazeMaker.cpp:18:20: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  ref[12] = {1,1,0,0};
+                    ^
+../MazeMaker.cpp:18:10: error: assigning to an array from an initializer list
+  ref[12] = {1,1,0,0};
+          ^
+../MazeMaker.cpp:19:20: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  ref[13] = {1,1,0,1};
+                    ^
+../MazeMaker.cpp:19:10: error: assigning to an array from an initializer list
+  ref[13] = {1,1,0,1};
+          ^
+../MazeMaker.cpp:20:20: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  ref[14] = {1,1,1,0};
+                    ^
+../MazeMaker.cpp:20:10: error: assigning to an array from an initializer list
+  ref[14] = {1,1,1,0};
+          ^
+../MazeMaker.cpp:21:20: warning: extended initializer lists only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  ref[15] = {1,1,1,1};
+                    ^
+../MazeMaker.cpp:21:10: error: assigning to an array from an initializer list
+  ref[15] = {1,1,1,1};
+          ^
+make: *** [MazeMaker.o] Error 1
+
+23:17:33 Build Finished (took 156ms)
+

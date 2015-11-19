@@ -1,0 +1,6 @@
+22:51:23 **** Build of configuration Default for project ACMICPC ****
+make all 
+make: *** No rule to make target `all'.  Stop.
+
+22:51:23 Build Finished (took 60ms)
+

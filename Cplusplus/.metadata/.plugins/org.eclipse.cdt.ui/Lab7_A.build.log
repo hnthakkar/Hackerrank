@@ -1,0 +1,15 @@
+23:17:29 **** Incremental Build of configuration Debug for project Lab7_A ****
+make all 
+Building file: ../Lab7_A.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Lab7_A.d" -MT"Lab7_A.d" -o "Lab7_A.o" "../Lab7_A.cpp"
+Finished building: ../Lab7_A.cpp
+ 
+Building target: Lab7_A
+Invoking: GCC C++ Linker
+g++  -o "Lab7_A"  ./Lab7_A.o   
+Finished building target: Lab7_A
+ 
+
+23:17:30 Build Finished (took 456ms)
+

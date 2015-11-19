@@ -1,0 +1,1 @@
+LabTestD.d: ../LabTestD.cpp

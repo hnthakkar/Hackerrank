@@ -1,0 +1,92 @@
+#include <iostream>
+using namespace std;
+
+struct node {
+	int value;
+	struct node *left;
+	struct node *right;
+};
+
+static int preIndex = 0;
+struct node * buildTree(int pre[], int in[], int inStrt, int inEnd) {
+	struct node * ret;
+	if (inStrt > inEnd)
+		return NULL;
+
+	ret = new node();
+	ret->value = pre[preIndex++];
+	ret->left = NULL;
+	ret->right = NULL;
+
+	if (inStrt == inEnd)
+		return ret;
+	int i = inStrt;
+	for (; i <= inEnd; i++) {
+		if (in[i] == pre[preIndex - 1]) {
+			break;
+		}
+	}
+
+	ret->left = buildTree(pre, in, inStrt, i - 1);
+	ret->right = buildTree(pre, in, i + 1, inEnd);
+	return ret;
+}
+
+void printPostorder(struct node* node) {
+	if (node == NULL)
+		return;
+
+	printPostorder(node->left);
+	printPostorder(node->right);
+	cout << node->value << endl;
+}
+
+static int inOrderRef = 0;
+static bool isCorrect = true;
+void printInorder(struct node* node) {
+	if (node == NULL)
+		return;
+
+	printInorder(node->left);
+	if (!isCorrect || node->value != inOrderRef + 1) {
+		isCorrect = false;
+		return;
+	}
+	printInorder(node->right);
+}
+
+void printPreorder(struct node* node) {
+	if (node == NULL)
+		return;
+
+	cout << node->value << " ";
+	printPreorder(node->left);
+	printPreorder(node->right);
+}
+
+int main() {
+	int N;
+	cin >> N;
+	int in[N];
+	for (int i = 0; i < N; i++) {
+		in[i] = i + 1;
+	}
+	int pre[N];
+	for (int i = 0; i < N; i++) {
+		cin >> pre[i];
+	}
+	preIndex = 0;
+	inOrderRef = 0;
+	isCorrect = true;
+	struct node * root = buildTree(pre, in, 0, N - 1);
+
+	if (!isCorrect) {
+		cout << "NO" << endl;
+	} else {
+		//printInorder(root);
+		//printPreorder(root);
+		printPostorder(root);
+		cout << "YES" << endl;
+	}
+	return 0;
+}

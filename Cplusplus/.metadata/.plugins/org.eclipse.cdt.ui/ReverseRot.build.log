@@ -1,0 +1,6 @@
+23:17:36 **** Incremental Build of configuration Debug for project ReverseRot ****
+make all 
+make: Nothing to be done for `all'.
+
+23:17:36 Build Finished (took 55ms)
+

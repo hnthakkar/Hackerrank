@@ -1,0 +1,95 @@
+#include <iostream>
+using namespace std;
+
+void printOuterLine(int size){
+	cout << "+-";
+	while(size--){
+		cout << "-";
+		cout << "---";
+	}
+	cout << "--+" << endl;
+}
+
+void printNum1(int len1, int num1Array[]){
+	cout << "| ";
+	for (int i = 0; i < len1; i++){
+		cout << " ";
+		cout << " " << num1Array[i] << " ";
+	}
+	cout << " ";
+	cout << " |" << endl;
+}
+
+void printDivider(int len1){
+	cout << "| ";
+	for (int i = 0; i < len1; i++){
+		cout << "+---";
+	}
+	cout << "  |" << endl;
+}
+
+void printLine1(int len1, int num1Array[]){
+	cout << "| ";
+	for (int i = 0; i < len1; i++) {
+		cout << "|" << num1Array[i] << " " << "/";
+	}
+	cout << "| |" << endl;
+}
+
+void printLine2(int len1, int num2) {
+	cout << "| ";
+	for (int i = 0; i < len1; i++) {
+		cout << "| / ";
+	}
+	cout << "|" << num2 << "|";
+}
+
+void printLine3(int len1, int rightNum, int numArray[]){
+	cout << "|" << rightNum;
+	for (int i = 0; i < len1; i++) {
+		cout << "|/ " << numArray[i];
+	}
+	cout << "| |" << endl;
+}
+
+int main(){
+	while(true){
+		int num1, num2;
+		cin >> num1 >> num2;
+		if (num1 == 0 && num2 == 0)
+			break;
+		int num1Array[4];
+		int num2Array[4];
+		int len1 = 0, len2 = 0;
+		int tmp = num1;
+		for (int a = 0; a < 4; a++){
+			num1Array[a] = -1;
+			num2Array[a] = -1;
+		}
+		int index = 0;
+		while(tmp){
+			num1Array[index++] = tmp % 10;
+			tmp /= 10;
+			len1++;
+		}
+		tmp = num2;
+		index = 0;
+		while (tmp){
+			num2Array[index++] = tmp % 10;
+			tmp /= 10;
+			len2++;
+		}
+		cout << len1 << ":" << len2 << endl;
+		printOuterLine(len1);
+		printNum1(len1, num1Array);
+		for (int i = 0; i < len2; i++){
+			printDivider(len1);
+			printLine1(len1, num1Array);
+			printLine2(len1, len2);
+			printLine3(len1, len1, num1Array);
+		}
+		printDivider(len1);
+		printOuterLine(len1);
+	}
+	return 0;
+}

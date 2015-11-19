@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void BFS(int src, int N, int * adj, bool * visited, int * dist){
+
+}
+
+int main(){
+	int T;
+	cin >> T;
+	while(T--){
+		int N, M;
+		cin >> N >> M;
+		int ** adj = new int*[N];
+		for (int i = 0; i < N; i++ ){
+			adj[i] = new int[N];
+			for (int j = 0; j < N; j++){
+				adj[i][j] = 0;
+			}
+		}
+
+		bool visited[N];
+		queue<int> q;
+		int start, end;
+		while (M--){
+			cin >> start >> end;
+			adj[start][end] = 1;
+		}
+		int src;
+		cin >> src;
+		int * dist[N];
+		BFS(src, adj, visited, dist);
+	}
+	return 0;
+}

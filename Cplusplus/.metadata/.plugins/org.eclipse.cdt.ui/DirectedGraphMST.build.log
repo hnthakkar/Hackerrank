@@ -1,0 +1,16 @@
+23:17:23 **** Incremental Build of configuration Debug for project DirectedGraphMST ****
+make all 
+Building file: ../DirectedGraphMST.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"DirectedGraphMST.d" -MT"DirectedGraphMST.d" -o "DirectedGraphMST.o" "../DirectedGraphMST.cpp"
+../DirectedGraphMST.cpp: In function ‘int main()’:
+../DirectedGraphMST.cpp:106:20: error: ‘x’ was not declared in this scope
+  visited[0] = true;x
+                    ^
+../DirectedGraphMST.cpp:107:2: error: expected ‘;’ before ‘distance’
+  distance[0] = 0;
+  ^
+make: *** [DirectedGraphMST.o] Error 1
+
+23:17:23 Build Finished (took 206ms)
+

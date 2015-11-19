@@ -1,0 +1,73 @@
+#include <iostream>
+using namespace std;
+
+struct node{
+	int value;
+	struct node *left;
+	struct node *right;
+};
+
+static int preIndex = 0;
+struct node * buildTree(int pre[], int in[], int inStrt, int inEnd){
+	struct node * ret;
+	if(inStrt > inEnd)
+		return NULL;
+
+	ret = new node();
+	ret->value = pre[preIndex++];
+	ret->left = NULL;
+	ret->right = NULL;
+
+	if(inStrt == inEnd)
+		return ret;
+	int i = inStrt;
+	for (; i <= inEnd; i++){
+		if(in[i] == pre[preIndex-1]){
+			break;
+		}
+	}
+
+	struct node * lref = buildTree(pre, in, inStrt, i-1);
+	if(lref){
+		if(lref->value == -1){
+			return lref;
+		} else if (lref->value > ret->value){
+			ret->value = -1;
+			return ret;
+		}
+		ret->left = lref;
+	}
+
+	struct node * rref = buildTree(pre, in, i+1, inEnd);
+	if(rref){
+		if(rref->value == -1){
+			return rref;
+		} else if (rref->value < ret->value){
+			ret->value = -1;
+			return ret;
+		}
+		ret->right = rref;
+	}
+	return ret;
+}
+
+int main(){
+	int N;
+	cin >> N;
+	int in[N];
+	for (int i = 0; i < N; i++) {
+		in[i] = i + 1;
+	}
+	int pre[N];
+	for (int i = 0; i < N; i++) {
+		cin >> pre[i];
+	}
+	preIndex = 0;
+	struct node * root = buildTree(pre, in, 0, N - 1);
+	if (root->value == -1) {
+		cout << "NO" << endl;
+	} else {
+		cout << "YES" << endl;
+	}
+	return 0;
+}

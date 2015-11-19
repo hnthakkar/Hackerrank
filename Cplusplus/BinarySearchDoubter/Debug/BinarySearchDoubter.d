@@ -1,0 +1,1 @@
+BinarySearchDoubter.d: ../BinarySearchDoubter.cpp

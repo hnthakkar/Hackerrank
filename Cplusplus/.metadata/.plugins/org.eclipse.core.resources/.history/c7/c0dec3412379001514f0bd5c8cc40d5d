@@ -1,0 +1,139 @@
+#include <iostream>
+using namespace std;
+
+void printOuterLine(int size){
+	cout << "+-";
+	while(size--){
+		cout << "-";
+		cout << "---";
+	}
+	cout << "--+" << endl;
+}
+
+void printNum1(int len1, int num1Array[]){
+	cout << "| ";
+	for (int i = 0; i < len1; i++){
+		cout << " ";
+		cout << " " << num1Array[i] << " ";
+	}
+	cout << " ";
+	cout << " |" << endl;
+}
+
+void printDivider(int len1){
+	cout << "| ";
+	for (int i = 0; i < len1; i++){
+		cout << "+---";
+	}
+	cout << "+ |" << endl;
+}
+
+void printLine1(int len1, int num1Array[], bool partition){
+	if(partition){
+		cout << "|/";
+	} else {
+		cout << "| ";
+	}
+
+	for (int i = 0; i < len1; i++) {
+		cout << "|" << num1Array[i] << " " << "/";
+	}
+	cout << "| |" << endl;
+}
+
+void printLine2(int len1, int num2) {
+	cout << "| ";
+	for (int i = 0; i < len1; i++) {
+		cout << "| / ";
+	}
+	cout << "|" << num2 << "|" << endl;
+}
+
+void printLine3(int len1, int rightNum, int numArray[]){
+	cout << "|" << rightNum;
+	for (int i = 0; i < len1; i++) {
+		cout << "|/ " << numArray[i];
+	}
+	cout << "| |" << endl;
+}
+
+void printLower(int len1, int numArray[], int startIndex){
+	cout << "|/";
+	for (int i = 0; i < len1; i++) {
+		cout << " " << numArray[i+startIndex];
+		if (i == len1-1){
+			cout << "   ";
+		} else {
+			cout << " /";
+		}
+	}
+	cout << " |" << endl;
+}
+int main(){
+	while(true){
+		int num1, num2;
+		cin >> num1 >> num2;
+		if (num1 == 0 && num2 == 0)
+			break;
+		int len1 = 0, len2 = 0;
+
+		int tmp = num1;
+		while(tmp){
+			tmp /= 10;
+			len1++;
+		}
+		int num1Array[len1];
+		tmp = num1;
+		for (int i = len1-1; i >= 0; i--){
+			num1Array[i] = tmp % 10;
+			tmp /= 10;
+		}
+
+		tmp = num2;
+		while (tmp) {
+			tmp /= 10;
+			len2++;
+		}
+		int num2Array[len2];
+		tmp = num2;
+		for (int i = len2 - 1; i >= 0; i--) {
+			num2Array[i] = tmp % 10;
+			tmp /= 10;
+		}
+
+		long long int result = num1 * num2;
+		int resultArray[len1+len2];
+		for (int i = 0; i < len1+len2; i++){
+			resultArray[i] = -1;
+		}
+		long long int tmpResult = result;
+		int tmpIndex = len1+len2-1;
+		while(tmpResult){
+			resultArray[tmpIndex--] = tmpResult % 10;
+			tmpResult /= 10;
+		}
+		printOuterLine(len1);
+		printNum1(len1, num1Array);
+		int resultIndex = 0;
+		for (int i = 0; i < len2; i++){
+			printDivider(len1);
+			int line1[len1];
+			int line3[len1];
+			for (int j = 0; j < len1; j++){
+				line1[j] = (num1Array[j] * num2Array[i])/10;
+				line3[j] = (num1Array[j] * num2Array[i])%10;
+			}
+			if (i != 0 && resultArray[resultIndex-2] > -1){
+				printLine1(len1, line1, true);
+			} else {
+				printLine1(len1, line1, false);
+			}
+			printLine2(len1, num2Array[i]);
+			printLine3(len1, resultArray[resultIndex++], line3);
+		}
+		printDivider(len1);
+		printLower(len1, resultArray, resultIndex);
+		printOuterLine(len1);
+	}
+	return 0;
+}

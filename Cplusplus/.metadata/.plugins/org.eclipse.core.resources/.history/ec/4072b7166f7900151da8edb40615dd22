@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+long long int fact (int num){
+	long long ret = 1;
+	for (int i = 2; i <= num; i++){
+		ret *= i;
+	}
+	return ret;
+}
+
+int getAlpha(int stringInt[], int len, long long int * refNum){
+	int retValue = 0;
+	long long int factValue = fact(len-1);
+	int i = 0;
+	for (; i < len; i++){
+		if (stringInt[i] == -1)
+			continue;
+		if (factValue * stringInt[i] > refNum){
+			break;
+		}
+		retValue = stringInt[i];
+	}
+	refNum -= stringInt[i-1];
+	stringInt[i-1] = -1;
+	return retValue;
+}
+
+int main() {
+	while (true) {
+		string s;
+		cin >> s;
+		if (s == "#") {
+			cin >> s;
+			if (s == "0") {
+				break;
+			}
+		}
+		long long int k;
+		cin >> k;
+		k -= 1;
+		int len = s.length();
+		int stringInt[len];
+		for (int j = 0; j < len; j++) {
+			char ch = s.at(j);
+			stringInt[j] = (int) ch;
+		}
+		sort(stringInt, stringInt + len);
+		int finalOrder[len];
+		long long int *refNum = 0;
+		//refNum = k;
+		for (int i = 0; i < len; i++){
+			finalOrder[i] = getAlpha(stringInt, len-i, &k);
+		}
+
+		for (int i = 0; i < len; i++) {
+			char ch = finalOrder[i];
+			cout << ch;
+		}
+		cout << endl << flush;
+	}
+	return 0;
+}

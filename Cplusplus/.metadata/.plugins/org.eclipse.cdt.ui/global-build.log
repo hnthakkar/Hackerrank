@@ -1,0 +1,15 @@
+20:50:38 **** Incremental Build of configuration Debug for project GraphBFS ****
+make all 
+Building file: ../GraphBFS.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"GraphBFS.d" -MT"GraphBFS.d" -o "GraphBFS.o" "../GraphBFS.cpp"
+Finished building: ../GraphBFS.cpp
+ 
+Building target: GraphBFS
+Invoking: GCC C++ Linker
+g++  -o "GraphBFS"  ./GraphBFS.o   
+Finished building target: GraphBFS
+ 
+20:50:41 **** Incremental Build of configuration Debug for project GraphBFS ****
+make all 
+make: Nothing to be done for `all'.

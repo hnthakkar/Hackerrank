@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int N;
+	cin >> N;
+	int inputs[N];
+	for (int i = 0; i < N; i++) {
+		cin >> inputs[i];
+	}
+	if (N == 1) {
+		cout << 1 << endl;
+	} else {
+		int coffee[N];
+		coffee[0] = 1;
+		int index = 1;
+		int counter = 1;
+		bool allDone = false;
+		bool lastEquals = false;
+		while(index < N){
+			if(inputs[index-1] < inputs[index]){
+				counter = coffee[index-1] + 1;
+				if (lastEquals){
+					counter++;
+					lastEquals = false;
+				}
+				while(inputs[index-1] < inputs[index]){
+					coffee[index] = counter;
+					index++; counter++;
+					if(index >= N){
+						break;
+					}
+				}
+			} else if(inputs[index-1] > inputs[index]){
+				counter = 1;
+				if (lastEquals){
+					counter++;
+					lastEquals = false;
+				}
+				while(inputs[index-1] > inputs[index]){
+					coffee[index] = counter;
+					index++; counter++;
+					if (index >= N) {
+						break;
+					}
+				}
+			} else {
+				while(inputs[index-1] == inputs[index]){
+					coffee[index] = 1;
+					index++; counter++;
+					if (index >= N) {
+						break;
+					}
+				}
+				lastEquals = true;
+			}
+		}
+
+		long int result = 0;
+		for(int i = 0; i < N; i++){
+			result += coffee[i];
+		}
+		cout << result << endl;
+	}
+	return 0;
+}

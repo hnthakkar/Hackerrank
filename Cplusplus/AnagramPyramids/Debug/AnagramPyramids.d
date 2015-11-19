@@ -1,0 +1,1 @@
+AnagramPyramids.d: ../AnagramPyramids.cpp

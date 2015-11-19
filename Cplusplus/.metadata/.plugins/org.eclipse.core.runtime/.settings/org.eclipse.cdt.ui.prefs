@@ -1,0 +1,7 @@
+buildConsoleLines=10000
+content_assist_disabled_computers=org.eclipse.cdt.ui.parserProposalCategory\u0000org.eclipse.cdt.ui.textProposalCategory\u0000
+eclipse.preferences.version=1
+org.eclipse.cdt.ui.text.custom_code_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates><template autoinsert\="false" context\="org.eclipse.cdt.core.cxxSource.contenttype_context" deleted\="false" description\="" enabled\="true" name\="Mine">\#include &lt;iostream&gt;\nusing namespace std;\n\nint main(){\n\tint T;\n\tcin &gt;&gt; T;\n\twhile(T--){\n\t\n\t}\n\treturn 0;\n}</template></templates>
+spelling_locale_initialized=true
+useAnnotationsPrefPage=true
+useQuickDiffPrefPage=true

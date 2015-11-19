@@ -1,0 +1,69 @@
+# include <iostream>
+using namespace std;
+
+long long int min(long long int a, long long int b, long long int c) {
+	if (a <= b) {
+		if (a <= c)
+			return a;
+		else
+			return c;
+	}
+	if (b <= c)
+		return b;
+	else
+		return c;
+}
+
+int main() {
+	int T;
+	cin >> T;
+
+	int p, q, r;
+	cin >> p >> q >> r;
+	int kCases[T];
+	int max = 0;
+	for (int i = 0; i < T; i++) {
+		cin >> kCases[i];
+		if (max < kCases[i]) {
+			max = kCases[i];
+		}
+	}
+
+	long long int num[max];
+	for (int i = 0; i < max; i++){
+		num[i] = 0;
+	}
+	long long int pIndex = 0, qIndex = 0, rIndex = 0;
+	long long int pNext = p;
+	long long int qNext = q;
+	long long int rNext = r;
+	long long int nextNum = 1;
+	num[0] = 1;
+	long long int lastNum = 1;
+	int i =  1;
+	while(i < max) {
+		nextNum = min(pNext, qNext, rNext);
+		if(nextNum != lastNum){
+			num[i++] = nextNum;
+			lastNum = nextNum;
+		}
+		if (nextNum == pNext) {
+			pIndex++;
+			pNext = num[pIndex] * p;
+		} else if (nextNum == qNext) {
+			qIndex++;
+			qNext = num[qIndex] * q;
+		} else if (nextNum == rNext) {
+			rIndex++;
+			rNext = num[rIndex] * r;
+		}
+	}
+	long int divisor = 10000000;
+	long int result = 0;
+	for (int j = 0; j < T; j++) {
+		result = ((num[kCases[j] - 1])%divisor);
+		cout << result << endl;
+	}
+
+	return 0;
+}

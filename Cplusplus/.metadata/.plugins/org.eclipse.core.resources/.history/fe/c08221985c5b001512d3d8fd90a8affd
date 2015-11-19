@@ -1,0 +1,111 @@
+# include <iostream>
+using namespace std;
+
+void min(int a[], int b[], int c[], int ret[]) {
+	int i = 199;
+	while(i){
+		if(a[i] > b[i]){
+			ret = b;
+			break;
+		} if(b[i] > a[i]){
+			ret = a;
+			break;
+		}
+	}
+	i = 199;
+	while(i) {
+		if(ret[i] > c[i]) {
+			ret = c;
+			break;
+		}if(c[i] > ret[i]) {
+			break;
+		}
+	}
+}
+
+/*int pNext[200];
+int tmp = p;
+int pIndex = 0;
+while(tmp){
+	pNext[pIndex++] = tmp%10;
+	tmp /= 10;
+}*/
+
+void multiply(int nArray[], int num){
+	int lastIndex = 0, carry = 0;
+	for(int j = 0; j < 200; j++){
+		int val = nArray[j] * num + carry;
+		carry = val/10;
+		nArray[j] = (val%10);
+		if(nArray[j] > 0){
+			lastIndex = j;
+		}
+	}
+	while(carry){
+		int tmp = carry%10;
+		carry = carry/10;
+		nArray[++lastIndex] = tmp;
+	}
+}
+
+
+int main() {
+	int T;
+	cin >> T;
+
+	int p, q, r;
+	cin >> p >> q >> r;
+	int kCases[T];
+	int max = 0;
+	for (int i = 0; i < T; i++) {
+		cin >> kCases[i];
+		if (max < kCases[i]) {
+			max = kCases[i];
+		}
+	}
+
+	long int pIndex = 0, qIndex = 0, rIndex = 0;
+	int pNext[200] = {};
+	pNext[0] = 1;
+	multiply(pNext, p);
+	int qNext[200] = {};
+	qNext[0] = 1;
+	multiply(qNext, q);
+	int rNext[200] = {};
+	rNext[0] = 1;
+	multiply(rNext, r);
+	int nextNum[200];
+	int lastNum[200];
+
+	int num[max][200];
+	for (int i = 0; i < max; i++) {
+		num[i] = 0;
+	}
+	num[0] = 1;
+
+	int i =  1;
+	while(i < max) {
+		min(pNext, qNext, rNext, nextNum);
+		if(nextNum != lastNum){
+			num[i++] = nextNum;
+			lastNum = nextNum;
+		}
+		if (nextNum == pNext) {
+			pIndex++;
+			multiply(pNext, p);
+		} else if (nextNum == qNext) {
+			qIndex++;
+			qNext = (num[qIndex] * q)%10000000;
+		} else if (nextNum == rNext) {
+			rIndex++;
+			rNext = (num[rIndex] * r)%10000000;
+		}
+	}
+	//long int result = 0;
+	for (int j = 0; j < T; j++) {
+		//result = ((num[kCases[j] - 1]));
+		cout << (num[kCases[j] - 1]) << endl;
+	}
+
+	return 0;
+}

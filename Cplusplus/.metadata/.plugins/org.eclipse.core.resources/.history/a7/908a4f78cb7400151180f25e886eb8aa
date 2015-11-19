@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+	int T = 1;
+	char ch = 0;
+	while (cin >> ch) {
+		cin.unget();
+		int N, T;
+		cin >> N >> T;
+		int sum = 0;
+		int i = 0;
+		int tmp = 0;
+		bool alldone = true;
+		for (; i < N; i++){
+			cin >> tmp;
+			sum += tmp;
+			if (sum > T){
+				alldone = false;
+				break;
+			}
+		}
+		if (alldone){
+			cout << "Case " << T << ": " << i << endl;
+		} else {
+			cout << "Case " << T << ": " << (i-1) << endl;
+		}
+		T++;
+	}
+	return 0;
+}

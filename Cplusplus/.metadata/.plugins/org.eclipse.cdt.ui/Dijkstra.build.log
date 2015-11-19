@@ -1,0 +1,15 @@
+23:17:22 **** Incremental Build of configuration Debug for project Dijkstra ****
+make all 
+Building file: ../Dijkstra.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Dijkstra.d" -MT"Dijkstra.d" -o "Dijkstra.o" "../Dijkstra.cpp"
+Finished building: ../Dijkstra.cpp
+ 
+Building target: Dijkstra
+Invoking: GCC C++ Linker
+g++  -o "Dijkstra"  ./Dijkstra.o   
+Finished building target: Dijkstra
+ 
+
+23:17:22 Build Finished (took 527ms)
+

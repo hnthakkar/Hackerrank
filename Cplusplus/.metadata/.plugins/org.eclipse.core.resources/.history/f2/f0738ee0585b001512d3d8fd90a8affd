@@ -1,0 +1,66 @@
+# include <iostream>
+using namespace std;
+
+long int min(long int a, long int b, long int c) {
+	if (a <= b) {
+		if (a <= c)
+			return a;
+		else
+			return c;
+	}
+	if (b <= c)
+		return b;
+	else
+		return c;
+}
+
+int main() {
+	int T;
+	cin >> T;
+
+	int p, q, r;
+	cin >> p >> q >> r;
+	int kCases[T];
+	int max = 0;
+	for (int i = 0; i < T; i++) {
+		cin >> kCases[i];
+		if (max < kCases[i]) {
+			max = kCases[i];
+		}
+	}
+
+	long int num[max];
+	for (int i = 0; i < max; i++){
+		num[i] = 0;
+	}
+	long int pIndex = 0, qIndex = 0, rIndex = 0;
+	long int pNext = p;
+	long int qNext = q;
+	long int rNext = r;
+	long int nextNum = 1;
+	num[0] = 1;
+	long int lastNum = 1;
+	int i =  1;
+	while(i < max) {
+		nextNum = min(pNext, qNext, rNext);
+		if(nextNum != lastNum){
+			num[i++] = nextNum;
+			lastNum = nextNum;
+		}
+		if (nextNum == pNext) {
+			pIndex++;
+			pNext = (num[pIndex] * p)%10000000;
+		} else if (nextNum == qNext) {
+			qIndex++;
+			qNext = (num[qIndex] * q)%10000000;
+		} else if (nextNum == rNext) {
+			rIndex++;
+			rNext = (num[rIndex] * r)%10000000;
+		}
+	}
+	for (int j = 0; j < T; j++) {
+		cout << (num[kCases[j] - 1]) << endl;
+	}
+
+	return 0;
+}

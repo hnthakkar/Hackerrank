@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+	int T;
+	cin >> T;
+	while(T--){
+		int N = 0;
+		cin >> N;
+		int input[N][N];
+		for (int i = 0; i < N; i++){
+			for (int j = 0; j < N; j++){
+				input[i][j] = 0;
+			}
+		}
+
+		int index = 0;
+		while(index < N){
+			for (int j = 0; j <= index; j++){
+				cin >> input[index][j];
+			}
+			index++;
+		}
+
+		/*for (int i = 0; i < N; i++){
+			for (int j = 0; j < N; j++){
+				cout << input[i][j] << " ";
+			}
+			cout << endl;
+		}*/
+
+	}
+	return 0;
+}

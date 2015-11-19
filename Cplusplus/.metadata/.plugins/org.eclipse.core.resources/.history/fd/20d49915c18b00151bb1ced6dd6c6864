@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+	int T;
+	cin >> T;
+	while(T--){
+		int N, M;
+		cin >> N >> M;
+		int adj[N][N];
+		for (int i = 0; i < N; i++ ){
+			for (int j = 0; j < N; j++){
+				adj[i][j] = 0;
+			}
+		}
+		int start, end;
+		while (M--){
+			cin >> start >> end;
+			adj[start][end] = 1;
+		}
+	}
+	return 0;
+}
