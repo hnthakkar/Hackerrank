@@ -1,0 +1,1 @@
+PalinIndex.d: ../PalinIndex.cpp
